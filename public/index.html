@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Smart Bulletin</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+        <link rel="stylesheet" href="static/styles/main.css">        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script>        
+        <script src="static/js/main.js"></script>
+        
+
+    </head>
+    <body>
+        <div class="navigation-menu">
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">Stolni tenis</a></li>
+                <li><a href="#!" disabled>FIFA</a></li>
+            </ul>
+            <nav>
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="#" class="show-menu" data-activates="slide-out"><i class="material-icons">menu</i></a></li>
+                    </ul>
+                    <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                <i class="material-icons right">arrow_drop_down</i>  
+                                <i class="material-icons right">directions_run</i>                              
+                            </a>
+                        </li>                   
+                        <li><a href="#"><i class="material-icons">restaurant</i></a></li>
+                    </ul>--> 
+                </div>
+            </nav>
+        </div>
+
+        <ul id="slide-out" class="side-nav">
+            <li><div class="user-view">
+                <div class="background">
+                    <img src="static/images/ss-background.png">
+                </div>
+                <a href="#!user"><img class="circle" src="static/images/logo-smartsene.svg"></a>
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        
+
+        <!-- Page Layout here -->
+        <div class="row">
+            <div class="col s12 subpage sports-tabletennis">
+                <ul class="tabs">
+                    <li class="tab col s4"><a class="active" href="#tabletennis-register">Prijava</a></li>
+                    <li class="tab col s4"><a href="#tabletennis-table">Tablica</a></li>
+                    <li class="tab col s4"><a href="#tabletennis-winners">Pobjednici</a></li>
+                </ul>
+                <div id="tabletennis-register" class="col s12 center">
+                    <a class="waves-effect waves-light btn">Da, želim se prijaviti u stolnotenisku ligu!</a>
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <img src="images/yuna.jpg" alt="" class="circle">
+                            <span class="title">Luka Ruklić</span>
+                            <p>5x9 Networks</p>
+                        </li>
+                        <li class="collection-item avatar">
+                            <img src="images/yuna.jpg" alt="" class="circle">
+                            <span class="title">Ivan Rubil</span>
+                            <p>Smart Sense</p>
+                        </li>
+                        <li class="collection-item avatar">
+                            <img src="images/yuna.jpg" alt="" class="circle">
+                            <span class="title">Mladen Josipović</span>
+                            <p>Druga derivacija</p>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tabletennis-table" class="col s12">
+                    <table id="tabletennis-datatable" class="mdl-data-table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Igrač</th>
+                                <th>OS</th>
+                                <th>P</th>
+                                <th>I</th>
+                                <th>GR</th>
+                                <th>B</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Ivan Rubil</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>10:6</td>
+                                <td>4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tabletennis-winners" class="col s12 green">Test 3</div>
+            </div>
+        </div>
+
+    </body>
+</html>

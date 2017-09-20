@@ -1,0 +1,9 @@
+.logo {
+    width: 150px;
+    height: 50px;
+    margin: 6 10 0 0;
+}
+
+div.tabs-content.carousel {
+    height: 400px !important;
+}

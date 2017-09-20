@@ -1,0 +1,13 @@
+{
+  "name": "bulletin-board",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "lr",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2"
+  }
+}
