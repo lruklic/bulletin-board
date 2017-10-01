@@ -7,3 +7,7 @@
 div.tabs-content.carousel {
     height: 400px !important;
 }
+
+#tabletennis-register .btn {
+    margin-bottom: 50px;
+}

@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
         
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script>        
@@ -21,6 +22,7 @@
             <ul id="dropdown1" class="dropdown-content">
                 <li><a href="#!">Stolni tenis</a></li>
                 <li><a href="#!" disabled>FIFA</a></li>
+                <li><a href="#!" disabled>Belot</a></li>                
             </ul>
             <nav>
                 <div class="nav-wrapper">
@@ -45,15 +47,15 @@
                 <div class="background">
                     <img src="static/images/ss-background.png">
                 </div>
-                <a href="#!user"><img class="circle" src="static/images/logo-smartsene.svg"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#!user"><img class="circle" src="static/images/players/placeholder.jpg"></a>
+                <a href="#!name"><span class="white-text name">Luka Ruklić</span></a>
+                <a href="#!email"><span class="white-text email">luka.ruklic@smart-sense.com</span></a>
             </div></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
+            <li><a href="#!"><i class="material-icons">account_circle</i>Profile</a></li>
+            <li><a href="#!">Achievements</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a class="subheader">Misc</a></li>
+            <li><a class="waves-effect" href="#!">Cool stuff</a></li>
         </ul>
         
 
@@ -66,24 +68,11 @@
                     <li class="tab col s4"><a href="#tabletennis-winners">Pobjednici</a></li>
                 </ul>
                 <div id="tabletennis-register" class="col s12 center">
-                    <a class="waves-effect waves-light btn">Da, želim se prijaviti u stolnotenisku ligu!</a>
-                    <ul class="collection">
-                        <li class="collection-item avatar">
-                            <img src="images/yuna.jpg" alt="" class="circle">
-                            <span class="title">Luka Ruklić</span>
-                            <p>5x9 Networks</p>
-                        </li>
-                        <li class="collection-item avatar">
-                            <img src="images/yuna.jpg" alt="" class="circle">
-                            <span class="title">Ivan Rubil</span>
-                            <p>Smart Sense</p>
-                        </li>
-                        <li class="collection-item avatar">
-                            <img src="images/yuna.jpg" alt="" class="circle">
-                            <span class="title">Mladen Josipović</span>
-                            <p>Druga derivacija</p>
-                        </li>
-                    </ul>
+                    <div id="register-0">
+                        <h3>Preostalo vrijeme za prijavu: <span class="register-time-left"></span></h3>
+                        <a class="waves-effect waves-light btn">Da, želim se prijaviti u stolnotenisku ligu!</a>
+                        <div>Trenutno prijavljeni u stolnotenisku ligu: <span class="register-players"></span> </div>
+                    </div>
                 </div>
                 <div id="tabletennis-table" class="col s12">
                     <table id="tabletennis-datatable" class="mdl-data-table" cellspacing="0" width="100%">
@@ -108,10 +97,28 @@
                                 <td>10:6</td>
                                 <td>4</td>
                             </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Mladen Josipović</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7:5</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Luka Ruklic</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>1:12</td>
+                                <td>0</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <div id="tabletennis-winners" class="col s12 green">Test 3</div>
+                <div id="tabletennis-winners" class="col s12">Još nema održanih stolnoteniskih liga.</div>
             </div>
         </div>
 
