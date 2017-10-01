@@ -7,7 +7,17 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.2"
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.1",
+    "express-session": "^1.15.6",
+    "method-override": "^1.0.2",
+    "mongoose": "^4.11.14",
+    "passport": "^0.1.18",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0"
   }
 }
