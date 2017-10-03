@@ -29,11 +29,11 @@ var authStrategy = function (username, password, done) {
     DataController.getUserByUsername(username).then(function(user) {
         console.log(user);
         if (!user) {
-            done(null, false, { message: "User doesn't exist " });
+            done(null, false, { error : "email", message: "User doesn't exist " });
         } else if (user.password == password) {
             done(null, {"id" : user._id});
         } else {
-            done(null, false, { message: 'Incorrect username or password ' });
+            done(null, false, { error : "password", message: 'Incorrect password ' });
         }
     });
 

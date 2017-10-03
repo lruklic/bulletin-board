@@ -26,3 +26,16 @@ body {
     border-bottom: 2px solid #e91e63;
     box-shadow: none;
   }
+
+  .input-field div.error{
+    position: relative;
+    top: -1rem;
+    left: 0rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color:#e91e63;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+  }
