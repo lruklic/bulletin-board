@@ -2,6 +2,8 @@ var DataController = require('./db/data');
 
 var User = require('./models/user');
 
+var passportConfig = require("../config/passport");
+
 module.exports = function (app, path, passport) {
 
     app.get("/tournaments", isLoggedIn, function (req, res) {
@@ -45,6 +47,11 @@ module.exports = function (app, path, passport) {
                 return res.redirect('/home');
             });
         })(req, res, next);
+    });
+
+    app.post("/register", function(req, res, next) {
+        var answer = passportConfig.register(req);
+        return res.send(201);
     });
 
 };

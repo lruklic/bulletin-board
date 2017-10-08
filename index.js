@@ -12,7 +12,8 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 // Initialize passport
-require("./config/passport")(passport);
+var passportConfig = require("./config/passport");
+passportConfig.initialize(passport);
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));

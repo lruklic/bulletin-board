@@ -46,6 +46,28 @@ $(function() {
         });
     });
 
+    $("#btn-register").on('click', function() {
+        var registerModal = $("#register-modal");
+        $.ajax({
+            url : "/register",
+            type : "POST",
+            contentType : "application/json",
+            data : JSON.stringify({
+                "username" : registerModal.find('[name="username"]').val(), 
+                "password" : registerModal.find('[name="password"]').val(),
+                "company" : registerModal.find('[name="company"]').val(),
+                "firstName" : registerModal.find('[name="firstName"]').val(),
+                "lastName" : registerModal.find('[name="lastName"]').val()                
+            }),
+            success : function(data, textStatus, jqXHR) {
+
+            },
+            error : function() {
+
+            }
+        })
+    });
+
 
 
 
