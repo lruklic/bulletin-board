@@ -4,6 +4,7 @@ var BasicStrategy = require('passport-http').BasicStrategy;
 var DataController = require('../app/db/data');
 
 var User = require('../app/models/user');
+var crypt = require('../app/crypt/crypt.js');
 
 module.exports = {
     initialize : function(passport) {
@@ -29,7 +30,7 @@ module.exports = {
         
         // set the user's local credentials
         newUser.username = req.param('username');
-        newUser.password = req.param('password');
+        newUser.password = crypt.createHash(req.param('password'));
         newUser.company = req.param('company');
         newUser.firstName = req.param('firstName');
         newUser.lastName = req.param('lastName');
@@ -54,7 +55,7 @@ var authStrategy = function (username, password, done) {
         console.log(user);
         if (!user) {
             done(null, false, { error : "email", message: "User doesn't exist " });
-        } else if (user.password == password) {
+        } else if (crypt.isValidPassword(user, password)) {
             done(null, {"id" : user._id});
         } else {
             done(null, false, { error : "password", message: 'Incorrect password ' });
