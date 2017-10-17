@@ -7,13 +7,28 @@ var passportConfig = require("../config/passport");
 module.exports = function (app, path, passport) {
 
     app.get("/tournaments", isLoggedIn, function (req, res) {
-        res.json(DataController.getTournaments());
+        DataController.getTournaments().then(function(tournaments) {
+            res.json(tournaments);
+        });
     });
 
     app.get("/tournament/:id", function (req, res) {
         var id = req.params.id;
         var tournament = DataController.getTournament(id);
         res.json(tournament);
+    });
+
+    app.put("/tournaments/register", function(req, res) {
+        var tournamentId = req.body.tournamentId;
+        var action = req.body.action;
+        var user = req.user;
+
+        if (action == "REGISTER") {
+            DataController.addUserToTournament(tournamentId, user.username).then(function() {
+                res.json({});
+            });
+        }
+        
     });
 
     app.get("/profile", function (req, res) {

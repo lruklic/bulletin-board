@@ -60,10 +60,10 @@ $(function() {
                 "lastName" : registerModal.find('[name="lastName"]').val()                
             }),
             success : function(data, textStatus, jqXHR) {
-
+                $("#register-modal").modal('close');
             },
             error : function() {
-
+                alert("Error!");
             }
         })
     });

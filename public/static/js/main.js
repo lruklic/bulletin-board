@@ -8,6 +8,21 @@ $(function() {
 
     $('ul.tabs').tabs({ "swipeable" : true });
 
+    $(".register-btn").on('click', function() {
+        var tournamentId = $(this).attr("data-tournament-id");
+        $.ajax({
+            url : "/tournaments/register",
+            type : "PUT",
+            data : JSON.stringify(
+                {"tournamentId" : tournamentId, "action" : "REGISTER"}
+            ),
+            contentType : "application/json",
+            success : function() {
+                console.log("uspio");
+            }
+        })
+    });
+
 });
 
 function loadData() {

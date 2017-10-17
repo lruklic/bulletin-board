@@ -10,19 +10,33 @@ var object = {
     users : {
         "11" : {"username" : "lruklic", "fullname" : "Luka Ruklic", "company" : "5x9 networks", "email" : "luka.ruklic@smart-sense.hr"},
         "12" : {"username" : "irubil", "fullname" : "Ivan Rubil", "company" : "Smart Sense", "email" : "ivan.rubil@smart-sense.hr"},
-        "13" : {"username" : "snajman", "fullname" : "Simon Najman", "company" : "Smart Sense", "email" : "simon@smart-sense.hr"},
+        "13" : {"username" : "pp", "fullname" : "Simon Najman", "company" : "Smart Sense", "email" : "simon@smart-sense.hr"},
         "14" : {"username" : "mjosipovic", "fullname" : "Mladen Josipovic", "company" : "Druga Derivacija", "email" : "mladen@smart-sense.hr"},
     }
 }
 
 var User = require('../models/user');
+var Tournament = require('../models/tournament');
 
 module.exports = {
     getTournaments : function() {
-        return object.tournaments;
+        return Tournament.find({}).exec();
     },
     getTournament : function(id) {
         return object.tournaments[id];
+    },
+    addUserToTournament : function(tournamentId, username) {
+
+        var user = User.findOne({username : username}).exec();
+        var tournament = Tournament.findOne({id : tournamentId}).exec();
+
+        return Promise.all([user, tournament]).then(values => {
+            var user = values[0];
+            var tournament = values[1];
+            tournament.registeredUsers.push(user.uuid);
+            tournament.save();
+        });
+
     },
     getUsers : function() {
         return object.users;
