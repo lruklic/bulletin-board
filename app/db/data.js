@@ -5,7 +5,7 @@ var object = {
             status : {"phase" : "REGISTRATION", "until" : "Oct 15, 2017 23:59:59"},
             name : "Smart Sense Liga", 
             registeredUsers : ["11", "12"],
-            
+
         } 
     },
     users : {
@@ -24,7 +24,7 @@ module.exports = {
         return Tournament.find({}).exec();
     },
     getTournament : function(id) {
-        return Tournament.find({id : id}).exec();
+        return Tournament.findOne({id : id}).exec();
     },
     addUserToTournament : function(tournamentId, username) {
 
@@ -55,6 +55,32 @@ module.exports = {
             tournament.save();
         });
 
+    },
+    uploadTournamentResult : function(tournamentId, username, matchId, result) {
+        var user = User.findOne({username : username}).exec();
+        var tournament = Tournament.findOne({id : tournamentId}).exec();
+
+        return Promise.all([user, tournament]).then(values => {
+            var user = values[0].uuid;
+            var tournament = values[1];
+        
+            for (var i = 0; i < tournament.matches.length; i++) {
+                if (tournament.matches[i].id == matchId) {
+                    var updateMatch = tournament.matches[i];
+                    updateMatch.status = "NOT_CONFIRMED";
+                    updateMatch.result = {"score" : result, "submittedBy" : user};
+                    tournament.matches.set(i, updateMatch);                    
+                    tournament.save();
+                    break;
+                }
+            };
+        });
+    },
+    generateTournamentMatches : function(tournamentId, matches) {
+        Tournament.findOne({id : tournamentId}).then(function(tournament) {
+            tournament.matches = matches;
+            tournament.save();
+        });
     },
     getUsers : function() {
         return User.find({}).exec();

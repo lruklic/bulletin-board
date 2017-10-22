@@ -5,9 +5,14 @@
 }
 
 div.tabs-content.carousel {
-    height: 400px !important;
+    height: 600px !important;
 }
 
 #tabletennis-register .btn {
     margin-bottom: 50px;
+}
+
+.match-text {
+    font-size: 1.5rem;
+    padding: 10 0 10 0;
 }

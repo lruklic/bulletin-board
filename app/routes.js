@@ -33,8 +33,20 @@ module.exports = function (app, path, passport) {
                 res.json({"action" : action, "userId" : user.uuid});
             });
         }
-        
     });
+
+    app.put("/tournaments/results/upload", function(req, res) {
+        var tournamentId = req.body.tournamentId;
+        var matchId = req.body.matchId;
+        var result = req.body.result;
+        var user = req.user;
+
+        DataController.uploadTournamentResult(tournamentId, user.username, matchId, result).then(function() {
+            res.json({});
+        });
+
+        
+    })
 
     app.get("/profile", function (req, res) {
         var user = req.user;

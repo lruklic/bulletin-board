@@ -27,6 +27,9 @@ app.use(flash());
 // Enable REST routes
 require("./app/routes.js")(app, path, passport);
 
+// Start daemons
+require("./app/daemons/tournamentDaemon.js")();
+
 var dbConfig = require('./config/database.js');
 mongoose.connect(dbConfig.url);
 

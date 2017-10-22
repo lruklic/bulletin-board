@@ -2,13 +2,17 @@ var mongoose = require('mongoose');
 
 var tournamentSchema = mongoose.Schema({
     id : Number,
-    type : String,
+    details : {
+        category : String,
+        format : String
+    },
     status : {
         phase : String,
         until : String
     },
     name : String,
-    registeredUsers : Array
+    registeredUsers : Array,
+    matches : Array
 });
 
 module.exports = mongoose.model('Tournament', tournamentSchema);
