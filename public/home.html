@@ -14,6 +14,8 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script>        
         <script src="static/js/main.js"></script>
+
+        <script src="static/js/tournament/tournament.js"></script>        
         
 
     </head>
@@ -21,7 +23,6 @@
         <div class="navigation-menu">
             <ul id="dropdown1" class="dropdown-content">
                 <li><a href="#!">Stolni tenis</a></li>
-                <li><a href="#!" disabled>FIFA</a></li>
                 <li><a href="#!" disabled>Belot</a></li>                
             </ul>
             <nav>
@@ -63,9 +64,10 @@
         <div class="row">
             <div class="col s12 subpage sports-tabletennis">
                 <ul class="tabs">
-                    <li class="tab col s4"><a class="active" href="#tabletennis-register">Prijava</a></li>
-                    <li class="tab col s4"><a href="#tabletennis-table">Tablica</a></li>
-                    <li class="tab col s4"><a href="#tabletennis-winners">Pobjednici</a></li>
+                    <li class="tab col s3"><a class="active" href="#tabletennis-register">Prijava</a></li>
+                    <li class="tab col s3"><a href="#tabletennis-table">Tablica</a></li>
+                    <li class="tab col s3"><a href="#tabletennis-matches">Mečevi</a></li>                    
+                    <li class="tab col s3"><a href="#tabletennis-winners">Pobjednici</a></li>
                 </ul>
                 <div id="tabletennis-register" class="col s12 center">
                     <div id="register-0">
@@ -90,6 +92,10 @@
                         <tbody>
                         </tbody>
                     </table>
+                </div>
+                <div id="tabletennis-matches" class="col s12 center">
+                    <div>Player 1 : Player 2 4:3</div>
+                    <div>Player 3 : Player 4 4:2</div>
                 </div>
                 <div id="tabletennis-winners" class="col s12">Još nema održanih stolnoteniskih liga.</div>
             </div>

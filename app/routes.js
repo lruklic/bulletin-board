@@ -14,8 +14,9 @@ module.exports = function (app, path, passport) {
 
     app.get("/tournament/:id", function (req, res) {
         var id = req.params.id;
-        var tournament = DataController.getTournament(id);
-        res.json(tournament);
+        DataController.getTournament(id).then(function(tournament) {
+            res.json(tournament);            
+        });
     });
 
     app.put("/tournaments/register", function(req, res) {
@@ -25,7 +26,11 @@ module.exports = function (app, path, passport) {
 
         if (action == "REGISTER") {
             DataController.addUserToTournament(tournamentId, user.username).then(function() {
-                res.json({});
+                res.json({"action" : action, "userId" : user.uuid});
+            });
+        } else if (action == "UNREGISTER") {
+            DataController.removeUserFromTournament(tournamentId, user.username).then(function() {
+                res.json({"action" : action, "userId" : user.uuid});
             });
         }
         
@@ -43,7 +48,9 @@ module.exports = function (app, path, passport) {
     });
 
     app.get("/users", isLoggedIn, function (req, res) {
-        res.json(DataController.getUsers());
+        DataController.getUsers().then(function(users) {
+            res.json(users);
+        });
     });
 
     app.get("/", function (req, res) {

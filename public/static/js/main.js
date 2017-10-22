@@ -10,15 +10,20 @@ $(function() {
 
     $(".register-btn").on('click', function() {
         var tournamentId = $(this).attr("data-tournament-id");
+        if ($(this).hasClass("register")) {
+            action = "REGISTER";
+        } else {
+            action = "UNREGISTER";
+        }
         $.ajax({
             url : "/tournaments/register",
             type : "PUT",
             data : JSON.stringify(
-                {"tournamentId" : tournamentId, "action" : "REGISTER"}
+                {"tournamentId" : tournamentId, "action" : action}
             ),
             contentType : "application/json",
-            success : function() {
-                console.log("uspio");
+            success : function(res) {
+                loadData();
             }
         })
     });
@@ -27,6 +32,12 @@ $(function() {
 
 function loadData() {
     $.when($.ajax("/tournaments"), $.ajax("/users"), $.ajax("/profile")).done(function(d1, d2, d3) {
+
+        if ($.isEmptyObject(d3[0])) {
+            window.location.replace("/")
+        }
+
+        console.log("reload data");
         console.log(d1[0]);
         console.log(d2[0]);
         console.log(d3[0]);        
@@ -45,38 +56,52 @@ function loadData() {
 
                 registrationCountdownTimer(tourId, tournament.status.until);
                 var registeredUsers = tournament.registeredUsers;
+
+                var span = $("#register-" + tourId + " .register-players");
+                span.empty();
+
                 for (var i = 0; i < registeredUsers.length; i++) {
-                    var user = state.users[registeredUsers[i]];
-                    appendToRegisterList(tourId, user.fullname, user.company);
-                    playersTableData.push([i, user.fullname, 0, 0, 0, "0:0", 0]);
+                    var user = state.users.find((user) => { return user.uuid == registeredUsers[i]; });
+                    var fullname = user.firstName + " " + user.lastName;
+                    appendToRegisterList(span, fullname, user.company);
+                    playersTableData.push([i, fullname, 0, 0, 0, "0:0", 0]);
                 }
             }
 
-            $('#tabletennis-datatable').DataTable( {
-                data: playersTableData,
-                columnDefs: [
-                    {
-                        targets: [ 0, 1, 2 ],
-                        className: 'mdl-data-table__cell--non-numeric'
-                    }
-                ]
-            } );
+            if ( !$.fn.DataTable.isDataTable('#tabletennis-datatable') ) {
+                $('#tabletennis-datatable').DataTable( {
+                    data: playersTableData,
+                    columnDefs: [
+                        {
+                            targets: [ 0, 1, 2 ],
+                            className: 'mdl-data-table__cell--non-numeric'
+                        }
+                    ]
+                } );
+            } else {
+                $('#tabletennis-datatable').DataTable().clear().rows.add(playersTableData).draw();
+            }
+
         }
 
         $("#slide-out .name").text(state.profile.fullname);
         $("#slide-out .email").text(state.profile.email);        
 
+        if (state.tournaments[0].registeredUsers.indexOf(state.profile.uuid) != -1) {
+            $("a.register-btn").addClass("red unregister").removeClass("register").text("Želim se odjaviti iz stolnoteniske lige");
+        } else {
+            $("a.register-btn").addClass("register").removeClass("red unregister").text("Da, želim se prijaviti u stolnotenisku ligu!");            
+        }
+
     });
 }
 
-function appendToRegisterList(id, fullname, company) {
-    var span = $("#register-" + id + " .register-players");
+function appendToRegisterList(span, fullname, company) {
     if (span.text().length == 0) {
         span.append(fullname + " (" + company + ")");        
     } else {
         span.append(", " + fullname + " (" + company + ")");
     }
-
 }
 
 function registrationCountdownTimer(id, until) {

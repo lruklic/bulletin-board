@@ -4,7 +4,8 @@ var object = {
             type : "TABLE_TENNIS",
             status : {"phase" : "REGISTRATION", "until" : "Oct 15, 2017 23:59:59"},
             name : "Smart Sense Liga", 
-            registeredUsers : ["11", "12"]
+            registeredUsers : ["11", "12"],
+            
         } 
     },
     users : {
@@ -23,7 +24,7 @@ module.exports = {
         return Tournament.find({}).exec();
     },
     getTournament : function(id) {
-        return object.tournaments[id];
+        return Tournament.find({id : id}).exec();
     },
     addUserToTournament : function(tournamentId, username) {
 
@@ -38,8 +39,25 @@ module.exports = {
         });
 
     },
+    removeUserFromTournament : function(tournamentId, username) {
+
+        var user = User.findOne({username : username}).exec();
+        var tournament = Tournament.findOne({id : tournamentId}).exec();
+
+        return Promise.all([user, tournament]).then(values => {
+            var user = values[0].uuid;
+            var tournament = values[1];
+
+            var userIndex = tournament.registeredUsers.indexOf(user);
+            if (userIndex != -1) {
+                tournament.registeredUsers.splice(userIndex);
+            }
+            tournament.save();
+        });
+
+    },
     getUsers : function() {
-        return object.users;
+        return User.find({}).exec();
     },
     getUser : function(id) {
         return object.users[id];

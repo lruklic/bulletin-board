@@ -29,6 +29,7 @@ module.exports = {
         var newUser = new User();
         
         // set the user's local credentials
+        newUser.uuid = makeid(8);
         newUser.username = req.param('username');
         newUser.password = crypt.createHash(req.param('password'));
         newUser.company = req.param('company');
@@ -62,3 +63,14 @@ var authStrategy = function (username, password, done) {
         }
     });
 };
+
+function makeid(numberOfChar) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < (numberOfChar - 1); i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
