@@ -8,6 +8,12 @@ $(function() {
 
     $('ul.tabs').tabs({ "swipeable" : true });
 
+    $(".menu-button").on('click', function() {
+        var section = $(this).attr("section");
+        $(".section").addClass("hidden");
+        $("#" + section +  "-section").removeClass("hidden");
+    });
+
     $(".register-btn").on('click', function() {
         var tournamentId = $(this).attr("data-tournament-id");
         if ($(this).hasClass("register")) {
@@ -82,6 +88,8 @@ function loadData() {
         state.users = d2[0];
         state.profile = d3[0];
 
+        loadLatestMeals();
+
         var tourId = 0;
 
         for (var hash in state.tournaments) {
@@ -115,10 +123,7 @@ function loadData() {
             }
 
             jQuery.fn.dataTableExt.oSort['score-asc']  = function(a,b) {
-                var x = (a == "-") ? 0 : a.replace( /,/, "." );
-                var y = (b == "-") ? 0 : b.replace( /,/, "." );
-                x = parseFloat( x );
-                y = parseFloat( y );
+                
                 return ((x < y) ? -1 : ((x > y) ?  1 : 0));
             };
             

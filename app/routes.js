@@ -88,6 +88,14 @@ module.exports = function (app, path, passport) {
         return res.send(201);
     });
 
+    app.get("/mealMenus", function (req, res) {
+        var restaurant = req.query.restaurant;
+
+        DataController.getMealMenus(restaurant).then(function(mealMenus) {
+            res.json(mealMenus);
+        });
+    });
+
 };
 
 function isLoggedIn(req, res, next) {

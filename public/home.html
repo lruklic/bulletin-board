@@ -14,32 +14,21 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script>        
         <script src="static/js/main.js"></script>
-        <script src="static/js/state.js"></script>        
+        <script src="static/js/state.js"></script>                        
 
         <script src="static/js/tournament/tournament.js"></script>        
-        
+        <script src="static/js/meal/meal.js"></script>
 
     </head>
     <body>
         <div class="navigation-menu">
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!">Stolni tenis</a></li>
-                <li><a href="#!" disabled>Belot</a></li>                
-            </ul>
             <nav>
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="#" class="show-menu" data-activates="slide-out"><i class="material-icons">menu</i></a></li>
+                        <li><a href="#" class="menu-button active" section="meals"><i class="material-icons">restaurant</i></a></li>
+                        <li><a href="#" class="menu-button" section="tabletennis"><i class="material-icons ">directions_run</i></a></li>              
                     </ul>
-                    <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>
-                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
-                                <i class="material-icons right">arrow_drop_down</i>  
-                                <i class="material-icons right">directions_run</i>                              
-                            </a>
-                        </li>                   
-                        <li><a href="#"><i class="material-icons">restaurant</i></a></li>
-                    </ul>--> 
                 </div>
             </nav>
         </div>
@@ -60,42 +49,50 @@
             <li><a class="waves-effect" href="#!">Cool stuff</a></li>
         </ul>
         
+        <div id="meals-section" class="col s12 section hidden">
+            <div class="row">
+                <div class="col s6" data-place="btw">BTW restaurant</div>
+                <div class="col s6" data-place="vujca">Pri Vujči</div>            
+            </div>
+        </div>
 
         <!-- Page Layout here -->
-        <div class="row">
-            <div class="col s12 subpage sports-tabletennis">
-                <ul class="tabs">
-                    <li class="tab col s3"><a class="active" href="#tabletennis-register">Prijava</a></li>
-                    <li class="tab col s3"><a href="#tabletennis-table">Tablica</a></li>
-                    <li class="tab col s3"><a href="#tabletennis-matches">Mečevi</a></li>                    
-                    <li class="tab col s3"><a href="#tabletennis-winners">Pobjednici</a></li>
-                </ul>
-                <div id="tabletennis-register" class="col s12 center">
-                    <div id="register-0">
-                        <h3>Preostalo vrijeme za prijavu: <span class="register-time-left"></span></h3>
-                        <a data-tournament-id="0" class="waves-effect waves-light register register-btn btn">Da, želim se prijaviti u stolnotenisku ligu!</a>
-                        <div>Trenutno prijavljeni u stolnotenisku ligu: <span class="register-players"></span> </div>
+        <div id="tabletennis-section" class="col s12 section">
+            <div class="row">
+                <div class="col s12 subpage sports-tabletennis">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#tabletennis-register">Prijava</a></li>
+                        <li class="tab col s3"><a href="#tabletennis-table">Tablica</a></li>
+                        <li class="tab col s3"><a href="#tabletennis-matches">Mečevi</a></li>                    
+                        <li class="tab col s3"><a href="#tabletennis-winners">Pobjednici</a></li>
+                    </ul>
+                    <div id="tabletennis-register" class="col s12 center">
+                        <div id="register-0">
+                            <h3>Preostalo vrijeme za prijavu: <span class="register-time-left"></span></h3>
+                            <a data-tournament-id="0" class="waves-effect waves-light register register-btn btn">Da, želim se prijaviti u stolnotenisku ligu!</a>
+                            <div>Trenutno prijavljeni u stolnotenisku ligu: <span class="register-players"></span> </div>
+                        </div>
                     </div>
+                    <div id="tabletennis-table" class="col s12">
+                        <table id="tabletennis-datatable" class="mdl-data-table" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Igrač</th>
+                                    <th>OS</th>
+                                    <th>P</th>
+                                    <th>I</th>
+                                    <th>GR</th>
+                                    <th>B</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="tabletennis-matches" class="col s12 center">
+                    </div>
+                    <div id="tabletennis-winners" class="col s12">Još nema održanih stolnoteniskih liga.</div>
                 </div>
-                <div id="tabletennis-table" class="col s12">
-                    <table id="tabletennis-datatable" class="mdl-data-table" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Igrač</th>
-                                <th>OS</th>
-                                <th>P</th>
-                                <th>I</th>
-                                <th>GR</th>
-                                <th>B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="tabletennis-matches" class="col s12 center">
-                </div>
-                <div id="tabletennis-winners" class="col s12">Još nema održanih stolnoteniskih liga.</div>
             </div>
         </div>
 
