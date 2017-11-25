@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
+    "cheerio": "latest",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.1",
@@ -16,10 +17,13 @@
     "facebook-scrape": "^1.0.0",
     "fbgraph": "^1.4.1",
     "method-override": "^1.0.2",
+    "moment": "^2.19.2",
     "mongoose": "^4.11.14",
+    "ontime": "0.0.3",
     "passport": "^0.1.18",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "request": "latest"
   }
 }
