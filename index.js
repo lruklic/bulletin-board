@@ -33,7 +33,10 @@ require("./app/routes.js")(app, path, passport);
 
 // Start daemons
 require("./app/daemons/tournamentDaemon.js")();
-require("./app/daemons/mealDaemon.js")();
+
+var MealDaemon = require("./app/daemons/mealDaemon.js");
+var mealDaemonInstance = new MealDaemon();
+mealDaemonInstance.start();
 
 var dbConfig = require('./config/database.js');
 mongoose.connect(dbConfig.url);

@@ -9,20 +9,41 @@ var moment = require('moment');
 
 var MealMenu = require('../models/mealmenu');
 
-module.exports = function () {
+function MealDaemon() {
+    
+};
 
+MealDaemon.prototype.start = function () {
+    console.log('Meal Daemons started.')
     ontime({
         cycle: '08:30:00'
     }, function (ot) {
         console.log('Fetching BTW menu for ' + new Date());
-        //fetchBTW();
+        fetchBTW();
         ot.done();
         return;
     });
 
+    ontime({
+        cycle: ['Monday 08:30:00']
+    }, function (ot) {
+        console.log('Fetching Vujca menu for ' + new Date());
+        fetchVujca();
+        ot.done();
+        return;
+    });
+}
+
+module.exports = MealDaemon;
+module.exports.reload = function () {
+    console.log("Reloading all restaurants ...")
+    fetchAll();
+}
+
+function fetchAll() {
+    fetchBTW();
     fetchVujca();
-    
-};
+}
 
 function fetchBTW() {
 
@@ -57,13 +78,13 @@ function fetchVujca() {
                 var day = foodImage.attribs.alt;
                 if (dayIndex(day) >= 0) {
                     var mealMenu = new MealMenu();
-                    mealMenu.date = getDayOffset(day.toUpperCase()).toDate();
+                    mealMenu.date = getDayOffset(day.toUpperCase());
                     mealMenu.restaurant = "vujca";
                     mealMenu.meals = foodImage.attribs.src;
                     
                     mealMenu.save(function(err) {
                         if (err){
-                            console.log('Error in Saving mealMenu: '+err);  
+                            console.log('Error in Saving mealMenu: '+err);    
                             throw err;  
                         }
                         console.log('mealMenu saved');       

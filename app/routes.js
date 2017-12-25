@@ -2,7 +2,10 @@ var DataController = require('./db/data');
 
 var User = require('./models/user');
 
+var MealDaemon = require('./daemons/mealDaemon.js')
+
 var passportConfig = require("../config/passport");
+var moment = require("moment");
 
 module.exports = function (app, path, passport) {
 
@@ -83,18 +86,29 @@ module.exports = function (app, path, passport) {
         })(req, res, next);
     });
 
+    app.post("/logout", function (req, res, next) {
+        // TODO
+    });
+
     app.post("/register", function(req, res, next) {
         var answer = passportConfig.register(req);
         return res.send(201);
     });
 
     app.get("/mealMenus", function (req, res) {
-        var restaurant = req.query.restaurant;
-
-        DataController.getMealMenus(restaurant).then(function(mealMenus) {
+        var date;
+        if (req.query.date && req.query.date.toUpperCase() == "TODAY") {
+            date = moment();
+        }
+        DataController.getMealMenus(req.query.restaurant, date).then(function(mealMenus) {
             res.json(mealMenus);
         });
     });
+
+    app.get("/mealMenus/reload", function (req, res) {
+        MealDaemon.reload();
+        res.send(200);
+    }) 
 
 };
 

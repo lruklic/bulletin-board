@@ -2,6 +2,8 @@ var User = require('../models/user');
 var Tournament = require('../models/tournament');
 var MealMenu = require('../models/mealmenu');
 
+var moment = require('moment');
+
 module.exports = {
     getTournaments : function() {
         return Tournament.find({}).exec();
@@ -71,7 +73,13 @@ module.exports = {
     getUserByUsername : function(username) {
         return User.findOne({username : new RegExp('^' + username + '$', "i")}).exec();
     },
-    getMealMenus : function(restaurant) {
-        return MealMenu.find({'restaurant' : restaurant}).sort({date: 'desc'}).exec();
+    getMealMenus : function(restaurant, date) {
+        if (date) {
+            var day = moment(date).startOf('day');
+            console.log(day.toDate());
+            return MealMenu.find({'restaurant' : restaurant, date : { $gte: day.toDate(), $lt: day.add(1, 'days').toDate() } }).sort({date: 'desc'}).exec();           
+        } else {
+            return MealMenu.find({'restaurant' : restaurant}).sort({date: 'desc'}).exec();                       
+        }
     }
 }
