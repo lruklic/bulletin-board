@@ -25,6 +25,10 @@ module.exports = function () {
         var matches = [];
 
         var registeredUsers = tournament.registeredUsers;
+        if (registeredUsers.length % 2 == 1) {
+            registeredUsers.push("DUMMY");
+        }
+
         var playersCount = registeredUsers.length;
 
         for (var i = 0; i < playersCount - 1; i++) {

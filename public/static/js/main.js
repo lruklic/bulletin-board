@@ -215,6 +215,13 @@ function registrationCountdownTimer(id, until) {
 };
 
 function matchDiv(match) {
+
+    if (match.player1 == "DUMMY") {
+        return '<div class="match-text">' + getUserById(match.player2).lastName + " SLOBODAN" + '</div>';
+    } else if (match.player2 == "DUMMY") {
+        return '<div class="match-text">' + getUserById(match.player1).lastName + " SLOBODAN" + '</div>';        
+    }
+
     var player1Name = getUserById(match.player1).lastName;
     var player2Name = getUserById(match.player2).lastName;
 
